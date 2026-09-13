@@ -184,11 +184,11 @@
   .mobile-menu a{
     display:flex;
     align-items:center;
-    gap:16px;
-    font-size:25px;
+    gap:14px;
+    font-size:21px;
     font-family:'Bitter',serif;
     font-weight:600;
-    padding:17px 6px;
+    padding:15px 6px;
     margin:0 -6px;
     border-bottom:1px solid var(--hair-soft);
     color:var(--ink);
@@ -244,7 +244,7 @@
   }
   .mobile-phone{
     display:block;
-    font-size:22px;
+    font-size:19px;
     font-weight:600;
     font-family:'Bitter',serif;
     color:var(--ink);
@@ -391,11 +391,26 @@
       height:auto;
     }
     .hero-text{justify-content:flex-start;}
-    .hero h1{max-width:none;}
-    .hero-sub{max-width:none;}
+    .hero h1{
+      max-width:none;
+      font-size:clamp(26px,7.2vw,34px);
+      line-height:1.2;
+    }
+    .hero-sub{
+      max-width:none;
+      margin-top:14px;
+      font-size:16px;
+      line-height:1.55;
+    }
+    .hero-actions{margin-top:22px;}
+    .hero-facts{
+      gap:28px;
+      flex-wrap:wrap;
+      margin-top:28px;
+      padding-top:20px;
+    }
     .hero-visual{height:auto;margin-top:24px;}
     .photo-card{height:auto;aspect-ratio:4/3.2;}
-    .hero-facts{gap:28px;flex-wrap:wrap;}
   }
   @media (max-width:480px){
     .header-right .phone-link{display:none;}
@@ -451,7 +466,7 @@
   <div class="hero-inner">
     <div class="hero-text">
       <div class="hero-label">Плитка и керамогранит — Калининград</div>
-      <h1>Укладка плитки и керамогранита в Калининграде. Лично, с 20-летним опытом и гарантией 1 год</h1>
+      <h1>Укладка плитки и керамогранита в Калининграде. С гарантией 1 год</h1>
       <p class="hero-sub">Укладка плитки и керамогранита в квартирах, частных домах и коммерческих помещениях. Без бригад и посредников — от замера до сдачи работаю лично.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="https://wa.me/79062346890" target="_blank" rel="noopener">Посчитать стоимость</a>
