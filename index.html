@@ -293,6 +293,8 @@
     color:var(--ink);
     max-width:27ch;
   }
+  .mobile-break{display:none;}
+  .mobile-line{display:inline;}
   .hero-sub{
     margin-top:clamp(20px,3vh,32px);
     font-size:17px;
@@ -394,13 +396,18 @@
     .hero h1{
       max-width:none;
       width:100%;
-      font-size:clamp(22px,6vw,27px);
+      font-size:clamp(19px,5.1vw,23px);
       line-height:1.28;
+    }
+    .mobile-break{display:inline;}
+    .mobile-line{
+      display:block;
+      white-space:nowrap;
     }
     .hero-sub{
       max-width:none;
       margin-top:14px;
-      font-size:16px;
+      font-size:clamp(17px,4.8vw,18px);
       line-height:1.55;
     }
     .hero-actions{margin-top:22px;}
@@ -467,8 +474,10 @@
   <div class="hero-inner">
     <div class="hero-text">
       <div class="hero-label">Плитка и керамогранит — Калининград</div>
-      <h1>Укладка плитки и керамогранита в Калининграде. С гарантией 1 год</h1>
-      <p class="hero-sub">Укладка плитки и керамогранита в квартирах, частных домах и коммерческих помещениях. Без бригад и посредников — от замера до сдачи работаю лично.</p>
+      <h1>Укладка плитки и <br class="mobile-break">керамогранита в Калининграде. <br class="mobile-break">С&nbsp;гарантией&nbsp;1&nbsp;год</h1>
+      <p class="hero-sub"><span class="mobile-line">Плитка и керамогранит&nbsp;под&nbsp;ключ.</span>
+        <span class="mobile-line">Работаю&nbsp;сам — без&nbsp;посредников.</span>
+        <span class="mobile-line">От&nbsp;замера до&nbsp;готового результата.</span></p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="https://wa.me/79062346890" target="_blank" rel="noopener">Посчитать стоимость</a>
         <div class="hero-phone">
