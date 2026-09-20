@@ -2173,7 +2173,7 @@
   .project-card.project-card-real .project-visual{order:1;aspect-ratio:auto;height:320px;max-height:none;flex-shrink:0;}
   .project-card-real .project-visual img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;}
   .project-card-real .project-visual img[src$="porch-hexagon.png"]{object-position:50% 68%;}
-  .project-card-real .project-visual img[src$="drainage-box.png"]{object-position:50% 52%;}
+  .project-card-real .project-visual img[src$="drainage-box.png"]{object-position:50% calc(38% - 2px);}
   .project-card-real .project-visual img[src$="fireplace.png"]{object-position:50% 73%;}
   .project-card-real .project-visual img[src$="backsplash-kabanchik.png"]{object-position:50% 55%;}
   .project-card-real:hover .project-visual img{transform:none;}
@@ -2255,6 +2255,50 @@
   @media(max-width:920px){
     .faq-heading h2{white-space:normal;max-width:26ch;margin-inline:auto;}
   }
+
+  /* Shared contact choices: direct links and accessible native dialog. */
+  button[data-messenger]{font-family:inherit;cursor:pointer;border:0;}
+  button.trust-link{border:0;background:none;padding:0;}
+  .messenger-links{display:flex;flex-wrap:wrap;gap:8px;}
+  .messenger-link{display:flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 12px;border:1px solid var(--hair);border-radius:12px;font-size:13px;font-weight:600;transition:background .2s,border-color .2s,transform .2s;}
+  .messenger-link:hover{background:#F7F3EE;border-color:#B8A69A;transform:translateY(-2px);}
+  .messenger-icon{display:inline-flex;flex-shrink:0;width:20px;height:20px;}
+  .messenger-icon svg{width:100%;height:100%;}
+  .messenger-icon-whatsapp{color:#279D61;}
+  .messenger-icon-telegram{color:#279BD0;}
+  .messenger-icon-max{color:#7970E7;}
+  .site-footer-action{flex-direction:column;align-items:flex-end;gap:12px;}
+  .site-footer-action .messenger-link{border-color:rgba(255,255,255,.2);color:#fff;}
+  .site-footer-action .messenger-link:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.45);}
+  .mobile-contact .messenger-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;margin-top:20px;}
+  .mobile-contact .messenger-link{padding:10px 6px;font-size:12px;gap:6px;margin:0;border:1px solid var(--hair);border-radius:12px;font-family:inherit;}
+  .messenger-dialog{width:min(460px,calc(100% - 32px));max-height:calc(100dvh - 32px);margin:auto;padding:36px;border:1px solid var(--hair);border-radius:24px;background:#FFFDF9;color:var(--ink);box-shadow:0 24px 100px #211D1930;overflow:auto;}
+  .messenger-dialog::backdrop{background:rgba(25,22,19,.55);backdrop-filter:blur(5px);}
+  .messenger-dialog[open]{animation:messenger-enter .23s ease-out;}
+  .messenger-dialog h2{font-size:28px;line-height:1.2;margin:14px 24px 12px 0;}
+  .messenger-dialog p{font-size:14px;line-height:1.6;color:var(--ink-soft);margin:0 0 24px;}
+  .messenger-close{position:absolute;top:12px;right:12px;width:44px;height:44px;border:0;border-radius:50%;background:transparent;color:var(--stone);font-size:28px;cursor:pointer;}
+  .messenger-close:hover{background:var(--hair-soft);color:var(--ink);}
+  .messenger-choices{display:grid;gap:12px;}
+  .messenger-choices .messenger-link{justify-content:flex-start;padding:16px 18px;min-height:72px;font-size:16px;border:0;border-radius:16px;color:#fff;transition:transform .2s,box-shadow .2s,filter .2s;}
+  .messenger-choices [data-channel="whatsapp"]{background:#168547;box-shadow:0 4px 12px #16854718;}
+  .messenger-choices [data-channel="telegram"]{background:#087EB5;box-shadow:0 4px 12px #087EB518;}
+  .messenger-choices [data-channel="max"]{background:linear-gradient(115deg,#2761D9,#7042D5);box-shadow:0 4px 12px #7042D518;}
+  .messenger-choices .messenger-link:hover{filter:brightness(1.08);transform:translateY(-2px);box-shadow:0 8px 20px #211D1924;}
+  .messenger-choices .messenger-link:active{transform:translateY(0);}
+  .messenger-choices .messenger-icon{width:38px;height:38px;padding:7px;border-radius:11px;background:#ffffff20;color:#fff;margin-right:4px;}
+  .messenger-arrow{display:grid;place-items:center;width:28px;height:28px;margin-left:auto;border-radius:50%;background:#ffffff18;color:inherit;font-size:18px;}
+  .btn-header-cta[data-messenger]{padding-inline:22px;}
+  body.messenger-open{overflow:hidden;}
+  [data-messenger]:focus-visible,.messenger-link:focus-visible,.messenger-close:focus-visible{outline:3px solid #B77959;outline-offset:4px;}
+  @keyframes messenger-enter{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+  @media(max-width:600px){
+    .messenger-dialog{width:100%;max-width:100%;max-height:calc(100dvh - 16px);margin:auto 0 0;padding:28px 24px max(28px,env(safe-area-inset-bottom));border-radius:24px 24px 0 0;border-bottom:0;}
+    .messenger-dialog h2{font-size:26px;}
+    .site-footer-action{align-items:flex-start;}
+  }
+  @media(prefers-reduced-motion:reduce){.messenger-dialog[open]{animation:none;}.messenger-link{transition:none;}}
+
 </style>
 </head>
 <body>
@@ -2272,10 +2316,7 @@
   </nav>
   <div class="header-right">
     <a class="phone-link" href="tel:+79062346890">+7 906 234 68 90</a>
-    <a class="btn btn-header-cta" href="https://wa.me/79062346890" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.14c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.13.11-1.82-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.79-4.16-4.94-4.35-.14-.19-1.18-1.57-1.18-2.99 0-1.42.75-2.12 1.01-2.41.26-.29.58-.36.77-.36h.55c.18 0 .42-.03.65.5.24.55.81 1.9.88 2.04.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.19.68-.79.87-1.07.19-.28.37-.23.63-.14.26.09 1.6.76 1.88.9.28.14.46.21.53.33.07.12.07.68-.17 1.36Z"/></svg>
-      <span>Написать в WhatsApp</span>
-    </a>
+    <button class="btn btn-header-cta"  type="button" data-messenger data-whatsapp="https://wa.me/79062346890" aria-haspopup="dialog" aria-controls="messengerDialog"><span>Обсудить проект</span></button>
     <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-controls="mobileMenu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -2292,10 +2333,7 @@
   <div class="mobile-contact">
     <span class="mobile-contact-label">Связаться</span>
     <a class="mobile-phone" href="tel:+79062346890">+7 906 234 68 90</a>
-    <a class="btn btn-header-cta mobile-wa-btn" href="https://wa.me/79062346890" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.14c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.13.11-1.82-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.79-4.16-4.94-4.35-.14-.19-1.18-1.57-1.18-2.99 0-1.42.75-2.12 1.01-2.41.26-.29.58-.36.77-.36h.55c.18 0 .42-.03.65.5.24.55.81 1.9.88 2.04.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.19.68-.79.87-1.07.19-.28.37-.23.63-.14.26.09 1.6.76 1.88.9.28.14.46.21.53.33.07.12.07.68-.17 1.36Z"/></svg>
-      <span>Написать в WhatsApp</span>
-    </a>
+    <div class="messenger-links" aria-label="Написать мне в мессенджере"><a class="messenger-link" href="https://wa.me/79062346890" target="_blank" rel="noopener"><span class="messenger-icon messenger-icon-whatsapp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.14c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.13.11-1.82-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.79-4.16-4.94-4.35-.14-.19-1.18-1.57-1.18-2.99 0-1.42.75-2.12 1.01-2.41.26-.29.58-.36.77-.36h.55c.18 0 .42-.03.65.5.24.55.81 1.9.88 2.04.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.19.68-.79.87-1.07.19-.28.37-.23.63-.14.26.09 1.6.76 1.88.9.28.14.46.21.53.33.07.12.07.68-.17 1.36Z"/></svg></span><span>WhatsApp</span></a><a class="messenger-link" href="https://t.me/pavelkrasikov" target="_blank" rel="noopener"><span class="messenger-icon messenger-icon-telegram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m21.4 3.2-3.3 17c-.2 1-1 1.2-1.8.7l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.3L5.5 13.4.6 11.9c-1-.3-1-1 .2-1.4L20 3.1c.9-.3 1.6.2 1.4 1.1Z"/></svg></span><span>Telegram</span></a><a class="messenger-link" href="https://max.ru/u/f9LHodD0cOIPQVKEjyAyUxxWowrtlN6LX6ekpKi80BvbyaUdpTDxIpK2ud0" target="_blank" rel="noopener"><span class="messenger-icon messenger-icon-max"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2a10 10 0 0 0-9.1 14.1L2 22l5.9-.9A10 10 0 1 0 12 2Zm0 4a6 6 0 0 0-5.4 8.6l-.3 3.1 3.1-.3A6 6 0 1 0 12 6Z"/></svg></span><span>MAX</span></a></div>
   </div>
 </div>
 
@@ -2306,7 +2344,7 @@
       <h1>Укладка плитки<br>и керамогранита<br>с&nbsp;гарантией&nbsp;1&nbsp;год</h1>
       <p class="hero-sub">Укладка плитки и керамогранита в квартирах, частных домах и коммерческих помещениях. Без бригад и посредников — от замера до сдачи работаю лично.</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="https://wa.me/79062346890" target="_blank" rel="noopener">Посчитать стоимость</a>
+        <button class="btn btn-primary"  type="button" data-messenger data-whatsapp="https://wa.me/79062346890" aria-haspopup="dialog" aria-controls="messengerDialog">Посчитать стоимость</button>
         <div class="hero-phone">
           <a href="tel:+79062346890">+7 906 234 68 90</a>
           <span>Звонок или сообщение</span>
@@ -2359,7 +2397,7 @@
             <div><dt>Углы</dt><dd>Запил под 45°</dd></div>
           </dl>
           <div class="project-price"><span>Стоимость проекта</span><strong>88 000&nbsp;<span class="currency-rub">₽</span></strong></div>
-          <a class="btn btn-primary" href="https://wa.me/79062346890?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9F%D0%B0%D0%B2%D0%B5%D0%BB%21%20%D0%A3%D0%B2%D0%B8%D0%B4%D0%B5%D0%BB%20%D0%BD%D0%B0%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%20%D0%B2%D0%B0%D1%88%D1%83%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%83%20%D0%BF%D0%BE%20%D0%BE%D0%B1%D0%BB%D0%B8%D1%86%D0%BE%D0%B2%D0%BA%D0%B5%20%D0%BA%D0%B0%D0%BC%D0%B8%D0%BD%D0%B0%20%D0%BA%D0%B5%D1%80%D0%B0%D0%BC%D0%BE%D0%B3%D1%80%D0%B0%D0%BD%D0%B8%D1%82%D0%BE%D0%BC%20%D1%81%20%D0%B7%D0%B0%D0%BF%D0%B8%D0%BB%D0%BE%D0%BC%20%D1%83%D0%B3%D0%BB%D0%BE%D0%B2%20%D0%BF%D0%BE%D0%B4%2045%C2%B0.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B0%D1%81%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BE%D1%85%D0%BE%D0%B6%D0%B8%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82." target="_blank" rel="noopener">Рассчитать мой проект</a>
+          <button class="btn btn-primary"  type="button" data-messenger data-whatsapp="https://wa.me/79062346890?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9F%D0%B0%D0%B2%D0%B5%D0%BB%21%20%D0%A3%D0%B2%D0%B8%D0%B4%D0%B5%D0%BB%20%D0%BD%D0%B0%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%20%D0%B2%D0%B0%D1%88%D1%83%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%83%20%D0%BF%D0%BE%20%D0%BE%D0%B1%D0%BB%D0%B8%D1%86%D0%BE%D0%B2%D0%BA%D0%B5%20%D0%BA%D0%B0%D0%BC%D0%B8%D0%BD%D0%B0%20%D0%BA%D0%B5%D1%80%D0%B0%D0%BC%D0%BE%D0%B3%D1%80%D0%B0%D0%BD%D0%B8%D1%82%D0%BE%D0%BC%20%D1%81%20%D0%B7%D0%B0%D0%BF%D0%B8%D0%BB%D0%BE%D0%BC%20%D1%83%D0%B3%D0%BB%D0%BE%D0%B2%20%D0%BF%D0%BE%D0%B4%2045%C2%B0.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B0%D1%81%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BE%D1%85%D0%BE%D0%B6%D0%B8%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82." aria-haspopup="dialog" aria-controls="messengerDialog">Рассчитать мой проект</button>
         </div>
         <div class="project-visual">
           <img src="assets/portfolio/fireplace.png" alt="Камин, облицованный серым керамогранитом 600 × 1200 мм с запилом углов под 45°" width="1086" height="1448" loading="lazy">
@@ -2379,7 +2417,7 @@
             <div><dt>Работы</dt><dd>Укладка фартука</dd></div>
           </dl>
           <div class="project-price"><span>Стоимость проекта</span><strong>35 000&nbsp;<span class="currency-rub">₽</span></strong></div>
-          <a class="btn btn-primary" href="https://wa.me/79062346890?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9F%D0%B0%D0%B2%D0%B5%D0%BB%21%20%D0%A3%D0%B2%D0%B8%D0%B4%D0%B5%D0%BB%20%D0%BD%D0%B0%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%20%D0%B2%D0%B0%D1%88%D1%83%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%83%20%D0%BF%D0%BE%20%D1%83%D0%BA%D0%BB%D0%B0%D0%B4%D0%BA%D0%B5%20%D0%BA%D1%83%D1%85%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D1%84%D0%B0%D1%80%D1%82%D1%83%D0%BA%D0%B0%20%D0%BF%D0%BB%D0%B8%D1%82%D0%BA%D0%BE%D0%B9%20%C2%AB%D0%BA%D0%B0%D0%B1%D0%B0%D0%BD%D1%87%D0%B8%D0%BA%C2%BB.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B0%D1%81%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BE%D1%85%D0%BE%D0%B6%D0%B8%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82." target="_blank" rel="noopener">Рассчитать мой проект</a>
+          <button class="btn btn-primary"  type="button" data-messenger data-whatsapp="https://wa.me/79062346890?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9F%D0%B0%D0%B2%D0%B5%D0%BB%21%20%D0%A3%D0%B2%D0%B8%D0%B4%D0%B5%D0%BB%20%D0%BD%D0%B0%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%20%D0%B2%D0%B0%D1%88%D1%83%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%83%20%D0%BF%D0%BE%20%D1%83%D0%BA%D0%BB%D0%B0%D0%B4%D0%BA%D0%B5%20%D0%BA%D1%83%D1%85%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D1%84%D0%B0%D1%80%D1%82%D1%83%D0%BA%D0%B0%20%D0%BF%D0%BB%D0%B8%D1%82%D0%BA%D0%BE%D0%B9%20%C2%AB%D0%BA%D0%B0%D0%B1%D0%B0%D0%BD%D1%87%D0%B8%D0%BA%C2%BB.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B0%D1%81%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BE%D1%85%D0%BE%D0%B6%D0%B8%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82." aria-haspopup="dialog" aria-controls="messengerDialog">Рассчитать мой проект</button>
         </div>
         <div class="project-visual">
           <img class="project-photo-landscape" src="assets/portfolio/backsplash-kabanchik.png" alt="Кухонный фартук из белой плитки «кабанчик» над деревянной столешницей" width="1500" height="1125" loading="lazy">
@@ -2399,7 +2437,7 @@
             <div><dt>Раскладка</dt><dd>По рисунку заказчика</dd></div>
           </dl>
           <div class="project-price"><span>Стоимость проекта</span><strong>102 000&nbsp;<span class="currency-rub">₽</span></strong></div>
-          <a class="btn btn-primary" href="https://wa.me/79062346890?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9F%D0%B0%D0%B2%D0%B5%D0%BB%21%20%D0%A3%D0%B2%D0%B8%D0%B4%D0%B5%D0%BB%20%D0%BD%D0%B0%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%20%D0%B2%D0%B0%D1%88%D1%83%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%83%20%D0%BF%D0%BE%20%D0%BE%D0%B1%D0%BB%D0%B8%D1%86%D0%BE%D0%B2%D0%BA%D0%B5%20%D0%BA%D1%80%D1%8B%D0%BB%D1%8C%D1%86%D0%B0%20%D1%88%D0%B5%D1%81%D1%82%D0%B8%D0%B3%D1%80%D0%B0%D0%BD%D0%BD%D0%BE%D0%B9%20%D0%BF%D0%BB%D0%B8%D1%82%D0%BA%D0%BE%D0%B9.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B0%D1%81%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BE%D1%85%D0%BE%D0%B6%D0%B8%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82." target="_blank" rel="noopener">Рассчитать мой проект</a>
+          <button class="btn btn-primary"  type="button" data-messenger data-whatsapp="https://wa.me/79062346890?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9F%D0%B0%D0%B2%D0%B5%D0%BB%21%20%D0%A3%D0%B2%D0%B8%D0%B4%D0%B5%D0%BB%20%D0%BD%D0%B0%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%20%D0%B2%D0%B0%D1%88%D1%83%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%83%20%D0%BF%D0%BE%20%D0%BE%D0%B1%D0%BB%D0%B8%D1%86%D0%BE%D0%B2%D0%BA%D0%B5%20%D0%BA%D1%80%D1%8B%D0%BB%D1%8C%D1%86%D0%B0%20%D1%88%D0%B5%D1%81%D1%82%D0%B8%D0%B3%D1%80%D0%B0%D0%BD%D0%BD%D0%BE%D0%B9%20%D0%BF%D0%BB%D0%B8%D1%82%D0%BA%D0%BE%D0%B9.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B0%D1%81%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BE%D1%85%D0%BE%D0%B6%D0%B8%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82." aria-haspopup="dialog" aria-controls="messengerDialog">Рассчитать мой проект</button>
         </div>
         <div class="project-visual">
           <img src="assets/portfolio/porch-hexagon.png" alt="Веранда: облицовка шестигранной плиткой 20 × 20 см в синих, бежевых и серых оттенках" width="1086" height="1448" loading="lazy">
@@ -2419,7 +2457,7 @@
             <div><dt>Материал</dt><dd>Керамогранит</dd></div>
           </dl>
           <div class="project-price"><span>Стоимость проекта</span><strong>35 000&nbsp;<span class="currency-rub">₽</span></strong></div>
-          <a class="btn btn-primary" href="https://wa.me/79062346890?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9F%D0%B0%D0%B2%D0%B5%D0%BB%21%20%D0%A3%D0%B2%D0%B8%D0%B4%D0%B5%D0%BB%20%D0%BD%D0%B0%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%20%D0%B2%D0%B0%D1%88%D1%83%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%83%20%D0%BF%D0%BE%20%D0%BE%D0%B1%D0%BB%D0%B8%D1%86%D0%BE%D0%B2%D0%BA%D0%B5%20%D0%B4%D1%80%D0%B5%D0%BD%D0%B0%D0%B6%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BA%D0%BE%D1%80%D0%BE%D0%B1%D0%B0%20%D0%B2%20%D1%86%D0%BE%D0%BA%D0%BE%D0%BB%D0%B5.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B0%D1%81%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BE%D1%85%D0%BE%D0%B6%D0%B8%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82." target="_blank" rel="noopener">Рассчитать мой проект</a>
+          <button class="btn btn-primary"  type="button" data-messenger data-whatsapp="https://wa.me/79062346890?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%9F%D0%B0%D0%B2%D0%B5%D0%BB%21%20%D0%A3%D0%B2%D0%B8%D0%B4%D0%B5%D0%BB%20%D0%BD%D0%B0%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%20%D0%B2%D0%B0%D1%88%D1%83%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%83%20%D0%BF%D0%BE%20%D0%BE%D0%B1%D0%BB%D0%B8%D1%86%D0%BE%D0%B2%D0%BA%D0%B5%20%D0%B4%D1%80%D0%B5%D0%BD%D0%B0%D0%B6%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BA%D0%BE%D1%80%D0%BE%D0%B1%D0%B0%20%D0%B2%20%D1%86%D0%BE%D0%BA%D0%BE%D0%BB%D0%B5.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B0%D1%81%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D0%BF%D0%BE%D1%85%D0%BE%D0%B6%D0%B8%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82." aria-haspopup="dialog" aria-controls="messengerDialog">Рассчитать мой проект</button>
         </div>
         <div class="project-visual">
           <img src="assets/portfolio/drainage-box.png" alt="Дренажный короб в цоколе, облицованный тёмным керамогранитом 30 × 30 см" width="1086" height="1448" loading="lazy">
@@ -2434,7 +2472,7 @@
         <h3>Есть похожий проект?</h3>
         <p>Отправьте фотографии помещения и выбранной плитки — предварительно оценю стоимость и сложность работ.</p>
       </div>
-      <a class="btn btn-primary" href="https://wa.me/79062346890?text=%D0%9F%D0%B0%D0%B2%D0%B5%D0%BB%2C%20%D0%B7%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D1%86%D0%B5%D0%BD%D0%B8%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20%D1%84%D0%BE%D1%82%D0%BE." target="_blank" rel="noopener">Отправить фото проекта</a>
+      <button class="btn btn-primary"  type="button" data-messenger data-whatsapp="https://wa.me/79062346890?text=%D0%9F%D0%B0%D0%B2%D0%B5%D0%BB%2C%20%D0%B7%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D1%86%D0%B5%D0%BD%D0%B8%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20%D1%84%D0%BE%D1%82%D0%BE." aria-haspopup="dialog" aria-controls="messengerDialog">Отправить фото проекта</button>
     </div>
   </div>
 </section>
@@ -2488,7 +2526,7 @@
         <h2>Чтобы дорогую плитку не пришлось укладывать дважды</h2>
 
         <div class="trust-actions">
-          <a class="trust-link" href="https://wa.me/79062346890?text=%D0%9F%D0%B0%D0%B2%D0%B5%D0%BB%2C%20%D0%B7%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C%20%D1%81%D0%B2%D0%BE%D0%B9%20%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82." target="_blank" rel="noopener">Обсудить проект <span aria-hidden="true">→</span></a>
+          <button class="trust-link"  type="button" data-messenger data-whatsapp="https://wa.me/79062346890?text=%D0%9F%D0%B0%D0%B2%D0%B5%D0%BB%2C%20%D0%B7%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B8%D1%82%D1%8C%20%D1%81%D0%B2%D0%BE%D0%B9%20%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82." aria-haspopup="dialog" aria-controls="messengerDialog">Обсудить проект <span aria-hidden="true">→</span></button>
         </div>
       </div>
 
@@ -2549,7 +2587,7 @@
             </span>
           </div>
           <h3>Отправляете фотографии</h3>
-          <p>Показываете помещение, выбранную плитку или проект и коротко описываете задачу в WhatsApp.</p>
+          <p>Показываете помещение, выбранную плитку или проект и коротко описываете задачу в удобном мессенджере.</p>
         </article>
 
         <article class="process-step">
@@ -2618,7 +2656,7 @@
             <span>Отвечу на вопросы и скажу, какие данные понадобятся для расчёта.</span>
           </div>
         </div>
-        <a class="btn btn-primary" href="https://wa.me/79062346890?text=%D0%9F%D0%B0%D0%B2%D0%B5%D0%BB%2C%20%D0%B7%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C%20%D0%BE%D1%86%D0%B5%D0%BD%D0%BA%D1%83%20%D0%BF%D0%BE%20%D1%84%D0%BE%D1%82%D0%BE." target="_blank" rel="noopener">Отправить фото</a>
+        <button class="btn btn-primary"  type="button" data-messenger data-whatsapp="https://wa.me/79062346890?text=%D0%9F%D0%B0%D0%B2%D0%B5%D0%BB%2C%20%D0%B7%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C%20%D0%BE%D1%86%D0%B5%D0%BD%D0%BA%D1%83%20%D0%BF%D0%BE%20%D1%84%D0%BE%D1%82%D0%BE." aria-haspopup="dialog" aria-controls="messengerDialog">Отправить фото</button>
       </div>
     </div>
   </div>
@@ -2645,7 +2683,7 @@
           <span>Минимальный заказ</span>
           <strong>10 000&nbsp;<span class="currency-rub">₽</span></strong>
         </div>
-        <a class="btn" href="https://wa.me/79062346890?text=%D0%9F%D0%B0%D0%B2%D0%B5%D0%BB%2C%20%D0%B7%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D1%80%D0%B5%D0%B4%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%20%D1%80%D0%B0%D1%81%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C%20%D0%BF%D0%BE%20%D1%84%D0%BE%D1%82%D0%BE." target="_blank" rel="noopener">Рассчитать в WhatsApp</a>
+        <button class="btn"  type="button" data-messenger data-whatsapp="https://wa.me/79062346890?text=%D0%9F%D0%B0%D0%B2%D0%B5%D0%BB%2C%20%D0%B7%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D1%80%D0%B5%D0%B4%D0%B2%D0%B0%D1%80%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%20%D1%80%D0%B0%D1%81%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C%20%D0%BF%D0%BE%20%D1%84%D0%BE%D1%82%D0%BE." aria-haspopup="dialog" aria-controls="messengerDialog">Рассчитать стоимость</button>
       </div>
 
       <div class="pricing-details">
@@ -2730,7 +2768,7 @@
 
         <div class="agreement-footer">
           <p>У вас есть готовый проект или техническое задание? Отправьте его мне для обсуждения условий договора.</p>
-          <a class="btn btn-primary" href="https://wa.me/79062346890?text=%D0%9F%D0%B0%D0%B2%D0%B5%D0%BB%2C%20%D0%B7%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D1%82%D1%8C%20%D1%83%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%B8%20%D0%B3%D0%B0%D1%80%D0%B0%D0%BD%D1%82%D0%B8%D1%8E." target="_blank" rel="noopener">Обсудить в WhatsApp</a>
+          <button class="btn btn-primary"  type="button" data-messenger data-whatsapp="https://wa.me/79062346890?text=%D0%9F%D0%B0%D0%B2%D0%B5%D0%BB%2C%20%D0%B7%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D1%82%D1%8C%20%D1%83%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%B8%20%D0%B3%D0%B0%D1%80%D0%B0%D0%BD%D1%82%D0%B8%D1%8E." aria-haspopup="dialog" aria-controls="messengerDialog">Обсудить условия</button>
         </div>
       </div>
     </div>
@@ -2810,9 +2848,9 @@
     <div class="faq-footer">
       <div>
         <strong>Не нашли ответа на свой вопрос?</strong>
-        <p>Напишите Павлу напрямую — он уточнит детали и подскажет, с чего начать.</p>
+        <p>Напишите мне — уточню детали и подскажу, с чего начать.</p>
       </div>
-      <a class="btn btn-primary" href="https://wa.me/79062346890?text=%D0%9F%D0%B0%D0%B2%D0%B5%D0%BB%2C%20%D0%B7%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%B4%D0%B0%D1%82%D1%8C%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%20%D0%BF%D0%BE%20%D1%83%D0%BA%D0%BB%D0%B0%D0%B4%D0%BA%D0%B5%20%D0%BF%D0%BB%D0%B8%D1%82%D0%BA%D0%B8." target="_blank" rel="noopener">Задать вопрос Павлу</a>
+      <button class="btn btn-primary"  type="button" data-messenger data-whatsapp="https://wa.me/79062346890?text=%D0%9F%D0%B0%D0%B2%D0%B5%D0%BB%2C%20%D0%B7%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%B4%D0%B0%D1%82%D1%8C%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%20%D0%BF%D0%BE%20%D1%83%D0%BA%D0%BB%D0%B0%D0%B4%D0%BA%D0%B5%20%D0%BF%D0%BB%D0%B8%D1%82%D0%BA%D0%B8." aria-haspopup="dialog" aria-controls="messengerDialog">Задать вопрос</button>
     </div>
   </div>
 </section>
@@ -2833,7 +2871,7 @@
 
       <div class="site-footer-action">
         <a class="site-footer-phone" href="tel:+79062346890">+7 906 234 68 90</a>
-        <a class="site-footer-whatsapp" href="https://wa.me/79062346890?text=%D0%9F%D0%B0%D0%B2%D0%B5%D0%BB%2C%20%D0%B7%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%83%D0%BA%D0%BB%D0%B0%D0%B4%D0%BA%D1%83%20%D0%BF%D0%BB%D0%B8%D1%82%D0%BA%D0%B8." target="_blank" rel="noopener">Написать в WhatsApp</a>
+        <div class="messenger-links" aria-label="Написать мне в мессенджере"><a class="messenger-link" href="https://wa.me/79062346890" target="_blank" rel="noopener"><span class="messenger-icon messenger-icon-whatsapp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.14c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.13.11-1.82-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.79-4.16-4.94-4.35-.14-.19-1.18-1.57-1.18-2.99 0-1.42.75-2.12 1.01-2.41.26-.29.58-.36.77-.36h.55c.18 0 .42-.03.65.5.24.55.81 1.9.88 2.04.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.19.68-.79.87-1.07.19-.28.37-.23.63-.14.26.09 1.6.76 1.88.9.28.14.46.21.53.33.07.12.07.68-.17 1.36Z"/></svg></span><span>WhatsApp</span></a><a class="messenger-link" href="https://t.me/pavelkrasikov" target="_blank" rel="noopener"><span class="messenger-icon messenger-icon-telegram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m21.4 3.2-3.3 17c-.2 1-1 1.2-1.8.7l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.3L5.5 13.4.6 11.9c-1-.3-1-1 .2-1.4L20 3.1c.9-.3 1.6.2 1.4 1.1Z"/></svg></span><span>Telegram</span></a><a class="messenger-link" href="https://max.ru/u/f9LHodD0cOIPQVKEjyAyUxxWowrtlN6LX6ekpKi80BvbyaUdpTDxIpK2ud0" target="_blank" rel="noopener"><span class="messenger-icon messenger-icon-max"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2a10 10 0 0 0-9.1 14.1L2 22l5.9-.9A10 10 0 1 0 12 2Zm0 4a6 6 0 0 0-5.4 8.6l-.3 3.1 3.1-.3A6 6 0 1 0 12 6Z"/></svg></span><span>MAX</span></a></div>
       </div>
     </div>
 
@@ -2844,6 +2882,12 @@
   </div>
 </footer>
 
+<dialog class="messenger-dialog" id="messengerDialog" aria-labelledby="messengerTitle" aria-describedby="messengerDescription">
+  <button class="messenger-close" type="button" aria-label="Закрыть выбор мессенджера" autofocus>×</button>
+  <h2 id="messengerTitle">Где вам удобнее обсудить проект?</h2>
+  <p id="messengerDescription">Отправьте мне фото и размеры для расчёта или задайте вопрос. Выберите удобный мессенджер.</p>
+  <div class="messenger-links messenger-choices" aria-label="Написать мне в мессенджере"><a class="messenger-link" href="https://wa.me/79062346890" target="_blank" rel="noopener" data-channel="whatsapp"><span class="messenger-icon messenger-icon-whatsapp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.14c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.13.11-1.82-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.79-4.16-4.94-4.35-.14-.19-1.18-1.57-1.18-2.99 0-1.42.75-2.12 1.01-2.41.26-.29.58-.36.77-.36h.55c.18 0 .42-.03.65.5.24.55.81 1.9.88 2.04.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.28.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.24 1.38.28.14.44.12.6-.07.16-.19.68-.79.87-1.07.19-.28.37-.23.63-.14.26.09 1.6.76 1.88.9.28.14.46.21.53.33.07.12.07.68-.17 1.36Z"/></svg></span><span>WhatsApp</span><span class="messenger-arrow" aria-hidden="true">↗</span></a><a class="messenger-link" href="https://t.me/pavelkrasikov" target="_blank" rel="noopener" data-channel="telegram"><span class="messenger-icon messenger-icon-telegram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m21.4 3.2-3.3 17c-.2 1-1 1.2-1.8.7l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.3L5.5 13.4.6 11.9c-1-.3-1-1 .2-1.4L20 3.1c.9-.3 1.6.2 1.4 1.1Z"/></svg></span><span>Telegram</span><span class="messenger-arrow" aria-hidden="true">↗</span></a><a class="messenger-link" href="https://max.ru/u/f9LHodD0cOIPQVKEjyAyUxxWowrtlN6LX6ekpKi80BvbyaUdpTDxIpK2ud0" target="_blank" rel="noopener" data-channel="max"><span class="messenger-icon messenger-icon-max"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2a10 10 0 0 0-9.1 14.1L2 22l5.9-.9A10 10 0 1 0 12 2Zm0 4a6 6 0 0 0-5.4 8.6l-.3 3.1 3.1-.3A6 6 0 1 0 12 6Z"/></svg></span><span>MAX</span><span class="messenger-arrow" aria-hidden="true">↗</span></a></div>
+</dialog>
 <script>
   function setVH(){
     document.documentElement.style.setProperty('--vh', (window.innerHeight * 0.01) + 'px');
@@ -2922,6 +2966,22 @@
     if(event.target === lightbox) lightbox.close();
   });
 
+  const messengerDialog = document.getElementById('messengerDialog');
+  const messengerWhatsapp = messengerDialog.querySelector('[data-channel="whatsapp"]');
+  document.querySelectorAll('[data-messenger]').forEach(button => {
+    button.addEventListener('click', () => {
+      messengerWhatsapp.href = button.dataset.whatsapp;
+      setMenuOpen(false);
+      messengerDialog.showModal();
+      document.body.classList.add('messenger-open');
+    });
+  });
+  messengerDialog.querySelector('.messenger-close').addEventListener('click', () => messengerDialog.close());
+  messengerDialog.addEventListener('click', event => {
+    const box = messengerDialog.getBoundingClientRect();
+    if(event.target === messengerDialog && (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom)) messengerDialog.close();
+  });
+  messengerDialog.addEventListener('close', () => document.body.classList.remove('messenger-open'));
 </script>
 
 </body>
