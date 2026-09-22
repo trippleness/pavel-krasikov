@@ -2165,12 +2165,12 @@
     .site-footer-bottom{align-items:flex-start;flex-direction:column;gap:7px;margin-top:20px;}
   }
   /* Equal medium-sized cards with consistent landscape photo frames. */
-  .portfolio-grid{max-width:1040px;margin:28px auto 0;align-items:stretch;grid-auto-rows:1fr;}
-  .project-card.project-card-real{grid-column:span 6;display:flex;flex-direction:column;}
+  .portfolio-grid{max-width:1280px;margin:28px auto 0;align-items:stretch;grid-auto-rows:1fr;}
+  .project-card.project-card-real{grid-column:span 4;display:flex;flex-direction:column;min-width:0;}
   .project-card-real .project-body{order:2;display:flex;flex-direction:column;flex:1;padding:22px;}
   .project-card-real .project-type{margin-bottom:8px;font-size:10px;letter-spacing:.04em;}
-  .project-card-real .project-body h3{font-size:24px;min-height:2.44em;}
-  .project-card.project-card-real .project-visual{order:1;aspect-ratio:auto;height:320px;max-height:none;flex-shrink:0;}
+  .project-card-real .project-body h3{font-size:22px;min-height:2.44em;}
+  .project-card.project-card-real .project-visual{order:1;aspect-ratio:auto;height:270px;max-height:none;flex-shrink:0;}
   .project-card-real .project-visual img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;}
   .project-card-real .project-visual img[src$="porch-hexagon.png"]{object-position:50% 68%;}
   .project-card-real .project-visual img[src$="drainage-box.png"]{object-position:50% calc(38% - 2px);}
@@ -2184,7 +2184,8 @@
   .project-price strong{font-family:'Bitter',serif;font-size:28px;font-weight:600;}
   .project-card-real .project-body > .btn{align-self:flex-start;margin-top:auto;white-space:normal;text-align:center;}
   .photo-card img{object-position:50% 65%;}
-  @media(min-width:601px) and (max-width:920px){
+  @media(min-width:601px) and (max-width:1100px){
+    .project-card.project-card-real{grid-column:span 6;}
     .project-card.project-card-real .project-visual{height:280px;}
   }
   @media(max-width:600px){
@@ -2302,6 +2303,16 @@
   }
   @media(prefers-reduced-motion:reduce){.messenger-dialog[open]{animation:none;}.messenger-link{transition:none;}}
 
+
+  .project-card-real .project-visual img[src$="mosaic-window.png"]{object-position:50% 40%;}
+  .project-card-real .project-visual img[src$="porches-main.png"]{object-position:50% 72%;}
+  .project-gallery{position:absolute;left:14px;bottom:14px;display:flex;align-items:center;gap:6px;padding:6px;border:1px solid #ffffff50;border-radius:12px;background:#211d19b8;backdrop-filter:blur(8px);}
+  .project-gallery-open{display:block;width:58px;height:44px;padding:0;border:1px solid #ffffff80;border-radius:6px;overflow:hidden;cursor:pointer;background:#211d19;transition:border-color .2s,transform .2s;}
+  .project-gallery-open:hover{border-color:#fff;transform:translateY(-2px);}
+  .project-gallery-open:focus-visible{outline:3px solid #fff;outline-offset:2px;}
+  .project-gallery-count{padding:0 4px;color:#fff;font-size:11px;white-space:nowrap;}
+  #case-porches .project-zoom{top:14px;bottom:auto;}
+  @media(prefers-reduced-motion:reduce){.project-gallery-open{transition:none;}}
 </style>
 </head>
 <body>
@@ -2467,6 +2478,38 @@
           <button class="project-zoom" type="button" aria-label="Увеличить фотографию дренажного короба" data-image="assets/portfolio/drainage-box.png" data-alt="Дренажный короб, встроенный в цоколь — керамогранит 30 × 30 см">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4M11 8v6M8 11h6"/></svg>
           </button>
+        </div>
+      </article>
+
+      <article class="project-card project-card-real" data-category="interior" id="case-mosaic">
+        <div class="project-body">
+          <div class="project-type">Оконный проём · выполненный объект</div>
+          <h3>Оконный проём в обрамлении мозаики</h3>
+          <p class="project-work">Облицевал откосы и подоконник тёмной глянцевой мозаикой. Мелкий рисунок и отражения света подчёркивают глубину проёма — окно становится выразительной деталью интерьера.</p>
+          <dl class="project-specs"><div><dt>Отделка</dt><dd>Мозаика</dd></div><div><dt>Зона работ</dt><dd>Откосы и подоконник</dd></div></dl>
+          <div class="project-price"><span>Стоимость проекта</span><strong>23 000&nbsp;<span class="currency-rub">₽</span></strong></div>
+          <button class="btn btn-primary" type="button" data-messenger data-whatsapp="https://wa.me/79062346890?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B0%D1%81%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D0%BE%D1%82%D0%B4%D0%B5%D0%BB%D0%BA%D1%83%20%D0%BE%D0%BA%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BF%D1%80%D0%BE%D1%91%D0%BC%D0%B0%20%D0%BC%D0%BE%D0%B7%D0%B0%D0%B8%D0%BA%D0%BE%D0%B9." aria-haspopup="dialog" aria-controls="messengerDialog">Рассчитать мой проект</button>
+        </div>
+        <div class="project-visual">
+          <img src="assets/portfolio/mosaic-window.png" alt="Откосы и подоконник, облицованные тёмной глянцевой мозаикой" width="1086" height="1448" loading="lazy">
+          <button class="project-zoom" type="button" aria-label="Увеличить фото: Оконный проём в обрамлении мозаики" data-image="assets/portfolio/mosaic-window.png" data-alt="Откосы и подоконник, облицованные тёмной глянцевой мозаикой"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4M11 8v6M8 11h6"/></svg></button>
+          
+        </div>
+      </article>
+
+      <article class="project-card project-card-real" data-category="outdoor" id="case-porches">
+        <div class="project-body">
+          <div class="project-type">Входные зоны · выполненный объект</div>
+          <h3>Два крыльца и отмостка в едином стиле</h3>
+          <p class="project-work">Объединил две входные зоны отделкой с рисунком камня. Ступени, площадки и примыкания к фасаду складываются в цельную композицию с аккуратно оформленными углами.</p>
+          <dl class="project-specs"><div><dt>Объём проекта</dt><dd>2 крыльца и отмостка</dd></div><div><dt>Рисунок отделки</dt><dd>Под камень</dd></div></dl>
+          <div class="project-price"><span>Стоимость проекта</span><strong>115 000&nbsp;<span class="currency-rub">₽</span></strong></div>
+          <button class="btn btn-primary" type="button" data-messenger data-whatsapp="https://wa.me/79062346890?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B0%D1%81%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D0%BE%D0%B1%D0%BB%D0%B8%D1%86%D0%BE%D0%B2%D0%BA%D1%83%20%D0%BA%D1%80%D1%8B%D0%BB%D0%B5%D1%86%20%D0%B8%20%D0%BE%D1%82%D0%BC%D0%BE%D1%81%D1%82%D0%BA%D0%B8." aria-haspopup="dialog" aria-controls="messengerDialog">Рассчитать мой проект</button>
+        </div>
+        <div class="project-visual">
+          <img src="assets/portfolio/porches-main.png" alt="Крыльцо со ступенями и площадкой, облицованными плиткой с рисунком камня" width="1448" height="1086" loading="lazy">
+          <button class="project-zoom" type="button" aria-label="Увеличить фото: Два крыльца и отмостка в едином стиле" data-image="assets/portfolio/porches-main.png" data-alt="Крыльцо со ступенями и площадкой, облицованными плиткой с рисунком камня"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4M11 8v6M8 11h6"/></svg></button>
+          <div class="project-gallery" role="group" aria-label="Три фотографии объекта"><button class="project-gallery-open" type="button" data-image="assets/portfolio/porches-main.png" data-alt="Общий вид крыльца" aria-label="Открыть фото 1 из 3: Общий вид крыльца"><img src="assets/portfolio/porches-main.png" alt="" width="64" height="48" loading="lazy"></button><button class="project-gallery-open" type="button" data-image="assets/portfolio/porches-steps.png" data-alt="Ступени второго крыльца и отделка углов" aria-label="Открыть фото 2 из 3: Ступени второго крыльца и отделка углов"><img src="assets/portfolio/porches-steps.png" alt="" width="64" height="48" loading="lazy"></button><button class="project-gallery-open" type="button" data-image="assets/portfolio/porches-plinth.png" data-alt="Отделка цоколя вдоль отмостки" aria-label="Открыть фото 3 из 3: Отделка цоколя вдоль отмостки"><img src="assets/portfolio/porches-plinth.png" alt="" width="64" height="48" loading="lazy"></button><span class="project-gallery-count">3 фото</span></div>
         </div>
       </article>
     </div>
@@ -2957,7 +3000,7 @@
   const lightbox = document.getElementById('portfolioLightbox');
   const lightboxImage = lightbox.querySelector('img');
   const lightboxClose = lightbox.querySelector('.lightbox-close');
-  document.querySelectorAll('.project-zoom').forEach(button => {
+  document.querySelectorAll('.project-zoom, .project-gallery-open').forEach(button => {
     button.addEventListener('click', () => {
       lightboxImage.src = button.dataset.image;
       lightboxImage.alt = button.dataset.alt;
